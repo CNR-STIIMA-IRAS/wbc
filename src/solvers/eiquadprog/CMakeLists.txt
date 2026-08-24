@@ -1,6 +1,7 @@
 SET(TARGET_NAME wbc-solvers-eiquadprog)
 
-pkg_search_module(eiquadprog REQUIRED IMPORTED_TARGET eiquadprog)
+# pkg_search_module(eiquadprog REQUIRED IMPORTED_TARGET eiquadprog)
+find_package(eiquadprog REQUIRED)
 
 set(SOURCES EiquadprogSolver.cpp)
 set(HEADERS EiquadprogSolver.hpp)
@@ -10,9 +11,12 @@ list(APPEND PKGCONFIG_REQUIRES wbc-core)
 string (REPLACE ";" " " PKGCONFIG_REQUIRES "${PKGCONFIG_REQUIRES}")
 
 add_library(${TARGET_NAME} SHARED ${SOURCES} ${HEADERS})
+message("EIQUADPROG_INCLUDE_DIRS: ${EIQUADPROG_INCLUDE_DIRS}")
+target_include_directories(${TARGET_NAME} PUBLIC ${EIQUADPROG_INCLUDE_DIRS})
 target_link_libraries(${TARGET_NAME} PUBLIC
                       wbc-core
-                      PkgConfig::eiquadprog)
+                      # PkgConfig::eiquadprog)
+                      eiquadprog::eiquadprog)
 
 set_target_properties(${TARGET_NAME} PROPERTIES
        VERSION ${PROJECT_VERSION}
