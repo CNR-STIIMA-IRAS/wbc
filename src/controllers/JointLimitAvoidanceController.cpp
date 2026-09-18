@@ -1,5 +1,6 @@
 #include "JointLimitAvoidanceController.hpp"
 #include "RadialPotentialField.hpp"
+#include <cassert>
 
 using namespace std;
 

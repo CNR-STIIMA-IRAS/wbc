@@ -1,4 +1,5 @@
 #include "JointPosPDController.hpp"
+#include <cassert>
 
 namespace wbc{
 

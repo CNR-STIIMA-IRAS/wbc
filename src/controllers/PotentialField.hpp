@@ -3,6 +3,7 @@
 #include <Eigen/Core>
 #include <stdexcept>
 #include <memory>
+#include <cassert>
 
 namespace wbc{
 

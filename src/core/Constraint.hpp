@@ -4,6 +4,7 @@
 #include "RobotModel.hpp"
 #include <Eigen/Core>
 #include <memory>
+#include <cassert>
 
 namespace wbc{
 

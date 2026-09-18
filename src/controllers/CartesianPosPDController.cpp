@@ -1,4 +1,5 @@
 #include "CartesianPosPDController.hpp"
+#include <cassert>
 namespace wbc{
 
 CartesianPosPDController::CartesianPosPDController() :

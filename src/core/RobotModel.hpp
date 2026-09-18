@@ -10,6 +10,7 @@
 #include "RobotModelConfig.hpp"
 #include <urdf_world/world.h>
 #include "../tools/filter.hpp"
+#include <cassert>
 
 namespace wbc{
 

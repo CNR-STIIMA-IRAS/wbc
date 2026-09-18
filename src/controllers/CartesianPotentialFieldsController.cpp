@@ -1,5 +1,6 @@
 #include "CartesianPotentialFieldsController.hpp"
 #include <stdexcept>
+#include <cassert>
 
 using namespace wbc;
 

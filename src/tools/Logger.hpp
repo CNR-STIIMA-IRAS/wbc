@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <sstream>
+#include <cassert>
 
 /* consider adding boost thread id since we'll want to know whose writting and
  * won't want to repeat it for every single call */
