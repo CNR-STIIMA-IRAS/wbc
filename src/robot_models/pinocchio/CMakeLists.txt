@@ -5,9 +5,6 @@ file(GLOB HEADERS RELATIVE ${PROJECT_SOURCE_DIR}/src/robot_models/robot_model_pi
 
 find_package(pinocchio REQUIRED)
 
-# Pinocchio needs it, but won't tell us
-find_package(console_bridge REQUIRED)
-
 list(APPEND PKGCONFIG_REQUIRES wbc-core)
 string (REPLACE ";" " " PKGCONFIG_REQUIRES "${PKGCONFIG_REQUIRES}")
 
