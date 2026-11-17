@@ -90,6 +90,9 @@ void QPOASESSolver::solve(const wbc::HierarchicalQP &hierarchical_qp, Eigen::Vec
             //options.print();
             
             qp.print();
+            // The problem is left in a failed state: re-create it at the next call (cold start), otherwise
+            // every following hotstart fails as well and the solver never recovers
+            configured = false;
             throw std::runtime_error("SQ Problem initialization failed with error " + std::to_string(ret_val));
         }
     }
@@ -98,13 +101,18 @@ void QPOASESSolver::solve(const wbc::HierarchicalQP &hierarchical_qp, Eigen::Vec
         if(ret_val != SUCCESSFUL_RETURN){
             //options.print();
             qp.print();
+            // The problem is left in a failed state: re-create it at the next call (cold start), otherwise
+            // every following hotstart fails as well and the solver never recovers
+            configured = false;
             throw std::runtime_error("SQ Problem hotstart failed with error " + std::to_string(ret_val));
         }
     }
 
     solver_output.resize(qp.nq);
-    if(sq_problem.getPrimalSolution( solver_output.data() ) == RET_QP_NOT_SOLVED)
+    if(sq_problem.getPrimalSolution( solver_output.data() ) == RET_QP_NOT_SOLVED){
+        configured = false;
         throw std::runtime_error("SQ Problem getPrimalSolution() returned " + std::to_string(RET_QP_NOT_SOLVED));
+    }
 }
 
 int QPOASESSolver::getReturnValue(){
